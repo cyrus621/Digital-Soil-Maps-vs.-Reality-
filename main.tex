@@ -60,21 +60,153 @@
 
 \newpage
 \begin{abstract}
-Abstract
+ %
+Any map should be a faithful representation of what it is designed to show, with some generalization appropriate to the map scale or grid cell resolution.
+%
+Soil maps should thus correspond to the actual soil properties or types \ldots
+%
 \end{abstract}
 
 \newpage
 \introduction  %% \introduction[modified heading if necessary]
-Introduction
 
+\par
+Digital Soil Mapping (DSM) is now the dominant method of making new soil maps.
+%
+DSM consists of training a model (either geostatistical or machine learning) on known observations, using their location and (for machine learning models) values of covariates at these locations.
+%
+The model is then applied over an area to be mapped, either by interpolation, by application of the machine-learning model, or a combination, to make a predictive map with quantified uncertainty at each location, typically a grid at some horizontal resolution.
+
+\par
+How useful are these maps? One answer is the per-grid cell evaluation of uncertianty, compared to acceptance criteria for one or more uses.
+%
+However, many uses require knowledge of the soil pattern, not just at individual points.
+%
+Except for precision agriculture, land is managed as units of more or less homogeneous soils, or at least a consistent pattern of contrasting soils.
+%
+Hydrologic models require connectivity between grid cells, as water flows over or through the landscape.
 
 \section{What is ``Reality''?}
-TEXT
 
+\par
+Point-wise reality is the actual vertical distribution of a set of soil properties at pedon scale.
+%
+However, DSM predicts over grid cells much larger than a pedon.
+%
+Geostatistical methods can predict averages their uncertainties over a block the size of the grid cell, but the average is not observed in the field (unless the entire grid cell would be dug up for examination!).
+%
+Machine-learning methods predict at the same support as the training observations, i.e., ``point'' (pedon) support, and the predicted values and their uncertainties are implicity extended to the whole grid cell.
+%
+So here the reality is the average -- any finer-scale detail of reality is by definition not representable by this DSM.
 
-\subsection{Scale}
-TEXT
+\par
+The reality over areas includes the relation between pedons, i.e., polypedons of similar and contrasting soils.
+%
+The DSM product should show these relations.
+%
+The categorization spatial pattern of soil bodies was extensively studied over 50 years ago, notably by \citet{Fridland1972,Fridland1974} and \citet{holeApproachLandscapeAnalysis1978, holeSoilLandscapeAnalysis1985}.
+%
+Fridland defined ``soil combinations'', whereas Hole used the term ``soilscape fabrics''.
+%
 
+\subsection{Fridland's concepts}
+
+\par
+\citet{Fridland1974} explains that ``\emph{[s]oil combinations} consist of elementary soil areas which are \emph{genetically linked} to various degrees and which produce a \emph{definite pattern} in the soil mantle
+%
+\ldots
+%
+Multiple spatial repetition of a certain soil combination or several soil combinations alternating in a definite order creates various forms of structures of the soil mantle
+%
+\ldots
+%
+The initial indivisible component of the soil mantle is the \emph{elementary soil area} which represents a body of soil that belongs to a certain classificational unit of the lowest rank and occupies space which is bounded on all sides by other elementary soil areals or non-soil formation'' (emphasis added).
+
+\par
+At the finest scale these are:
+
+\begin{enumerate}
+\item[0] Homogeneous
+\item Sporadically spotted: ``minute'' areas of contrasting soils: e.g., from tree throw, termite mounds,  carbonate solution-driven  depth of pedogenesis
+-- can be found by comprehensive geotechnical investigation or precision ag. technology; these DSM are not considered here
+\item Regular-cycling: e.g.,  gilgai,
+\item apparent diffusion
+\end{enumerate}
+
+The sporadically spotted scale can not be captured by any reasonable DSM scale.
+
+He then defines local patterns related to geomorphic process, parent material, or pedologic processes:
+
+\begin{enumerate}
+\item Dendritic, linear-dendritic and streaming forms, connected with various forms of the erosional relief;
+\item  Rounded-spotted (including ringlike) forms, connected with various depressional forms (sink holes, depressions of different types and lakes) and hilly-morainic relief;
+\item  Linear and wavy-linear forms connected with different linear forms of relief of an accumulative and somewhat erosional origin;
+\item  Streak-phacoid forms (referring to \emph{Phacoides} bivalve shells)  characteristic of modern and ancient flood plains and deltas;
+\item  A fan-shaped genetic and geometric structure is characteristic of alluvial fans and proluvial--deluvial trains;
+\item A geometrically disordered structure of the soil mantle is usually conditioned by the heterogeneity of the soil-forming rocks and their irregular succession.
+\end{enumerate}
+
+If these local patterns are at sufficiently coarse size to be represented at the DSM resolution, we should see them on the DSM map.
+
+\subsection{Hole's concepts}
+
+\citet{holeSoilLandscapeAnalysis1985} relates the \emph{pedologic fabric} of the landscape in terms of the size, shape and arrangement of bodies of soil and associated not-soil.
+%
+These are all called \emph{associations}, depending on the size of mapping units on a polygon map of soil bodies.
+%
+
+\par
+\citet[Table 5]{holeApproachLandscapeAnalysis1978} first discusses sizes of map units.
+%
+The soil individuals of map units as they exist on the ground are of size $\approx 1 \mathrm{m}^2$; this is the pedon.
+%
+These then can be grouped into polypedons:
+%
+\begin{enumerate}
+\item Micro: $<0.1 \mathrm{ha}$;
+\item Meso: $0.1 - 1.0 \mathrm{ha}$;
+\item Macro: $10 - 100 \mathrm{ha}$;
+\item Mega: $>100 \mathrm{ha}$;
+\end{enumerate}
+%
+The resolution of the DSM product dictates which of these can be identified on the DSM map.
+
+\par
+Over larger extents, \citet[Table 5]{holeApproachLandscapeAnalysis1978} identifies:
+%
+``microassociation'' mapping units have size $<250 \mathrm{km}^2$;
+%
+``mesoasociation'' mapping units $250-2~500 \mathrm{km}^2$; and
+%
+``macroasociation'' mapping units  $2~500 - 250~000\mathrm{km}^2$.
+%
+``megaasociation'' mapping units  $> 250~000\mathrm{km}^2$.
+%
+These scales are not relevant to the current discussion.
+
+\par
+\citet[Figure 5]{holeApproachLandscapeAnalysis1978}  then discusses general categories of shapes of soil bodies:
+\begin{enumerate}
+\item disks
+\item spots
+\item stripes (simple or branched)
+\item categorized by shape index (boundary length divided by periphery of a circle of the same area) as simple to rounded, and complex to angular.
+\end{enumerate}
+%
+These can be identified at any resolution, depending on the spatial arrangement of the soil-forming process.
+
+\section{Scale and resolution}
+
+\par
+The level of detail on a map has two components: categorical and cartographic.
+%
+Categorical detail is the precision of information. For a continuous variable it is the measurement precision.
+%
+For ordinal categorical variables generalized from continuous variables it is the class width.
+%
+For nominal categorical variables based on classes, e.g., a soil classification system, it is the extent of properties of the class.
+%
+This latter is implicit in monothetic hierarchical soil classification systems, notably USDA Soil Taxonomy, but also the World Reference Base for Soil Classification and many national systems.
 
 \conclusions[Discussion]  %% \conclusions[modified heading if necessary]
 Final discussion
