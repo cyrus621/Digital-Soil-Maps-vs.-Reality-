@@ -91,7 +91,28 @@ Hydrologic models require connectivity between grid cells, as water flows over o
 \par
 Point-wise reality is the actual vertical distribution of a set of soil properties at pedon scale.
 %
-However, DSM predicts over grid cells much larger than a pedon.
+These are levels \textit{i} (pedon) and \textit{i-1} (horizon) of \citet{Hoosbeekquantitativemodelingpedogenesis1992}'s organizational hierarchy.
+%
+Finer scales are not mapped.
+
+\subsection{Vertical reality}
+
+DSM predicts either pointwise at fixed depths, or as averages over a fixed depth slice.
+%
+This contrasts with the organization of natural soil bodies as pedogenetic horizons, which are the usual vertical resolution units in field descriptions and laboratory analyses.
+
+
+\subsection{Horizontal reality}
+%
+
+\par
+The reality over areas includes the relation between pedons, i.e., polypedons of similar and contrasting soils.
+%
+The DSM product should show these relations.
+%
+
+\par
+DSM predicts over grid cells much larger than a pedon.
 %
 Geostatistical methods can predict averages their uncertainties over a block the size of the grid cell, but the average is not observed in the field (unless the entire grid cell would be dug up for examination!).
 %
@@ -99,11 +120,9 @@ Machine-learning methods predict at the same support as the training observation
 %
 So here the reality is the average -- any finer-scale detail of reality is by definition not representable by this DSM.
 
+\section{Concepts of spatial organization}
+
 \par
-The reality over areas includes the relation between pedons, i.e., polypedons of similar and contrasting soils.
-%
-The DSM product should show these relations.
-%
 The categorization spatial pattern of soil bodies was extensively studied over 50 years ago, notably by \citet{Fridland1972,Fridland1974} and \citet{holeApproachLandscapeAnalysis1978, holeSoilLandscapeAnalysis1985}.
 %
 Fridland defined ``soil combinations'', whereas Hole used the term ``soilscape fabrics''.
@@ -195,6 +214,18 @@ These scales are not relevant to the current discussion.
 %
 These can be identified at any resolution, depending on the spatial arrangement of the soil-forming process.
 
+\section{Patterns represented by DSM}
+
+\par
+Different DSM methods can represent different patterns.
+
+\begin{itemize}
+\item Trend surfaces, including polynomial trends, thin-plate splines (TPS) and generalized additive models (GAM): These can represent smooth transitions over local to wide areas.  Splines and GAM show both in one model.
+\item Interpolation by pure geostatistics, e.g., Ordinary Kriging (OK): These show smooth local transitions in the neighbourhood of training points. Thus they are well-suited to ``spots'' or ``disks''.
+\item Tree-based or neural network-based machine learning: These predict separately at each grid cell, based on the trained model. There is no requirement for spatial continuity.  This allows finely-speckled patterns of contrasting soils -- whether these are realistic or not.
+\end{itemize}
+
+
 \section{Scale and resolution}
 
 \par
@@ -208,8 +239,17 @@ For nominal categorical variables based on classes, e.g., a soil classification 
 %
 This latter is implicit in monothetic hierarchical soil classification systems, notably USDA Soil Taxonomy, but also the World Reference Base for Soil Classification and many national systems.
 
+\section{Case Study 1 -- Kenya}
+
+iSDA maps vs.\ colonial maps, see \emph{/Users/rossiter/Library/Mobile Documents/com~apple~CloudDocs/Documents/data/Journal/BookChapters/DSM2006/graph}. We should see the ironstone hills (coarse fragments), river valley (silt) etc.
+
+\section{Case Study 2 -- European soil classes}
+
+Miniak predictived maps \url{https://zenodo.org/records/13838408}. Oversimplified NL.
+
 \conclusions[Discussion]  %% \conclusions[modified heading if necessary]
-Final discussion
+%
+Final discussion and recommendations for DSM assessment.
 
 
 %\codedataavailability{}
