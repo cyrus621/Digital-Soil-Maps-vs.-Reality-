@@ -86,6 +86,32 @@ Except for precision agriculture, land is managed as units of more or less homog
 %
 Hydrologic models require connectivity between grid cells, as water flows over or through the landscape.
 
+\par
+Soil class maps made by expert landscape analysis and field investigation show discrete map delineations with a minimum ground area corresponding to the design scale.
+%
+Each delineation is part of a map unit (also called a legend category), linked to a description of the range of soil classes, typical soil profiles, and associated laboratory analysis to be found within the map unit. The legend is either local names for a soil type or group of them, or a name within a soil classification system.
+%
+Figure \ref{fig:pq49b3} shows a typical example from Qu\'{e}bec \citep{grenonEtudePedologiqueComte1999}.
+%
+Map units in this example are named for a soil series, the dominant soil texture, soil thickness, and local terrain form.
+%
+The series name is linked to a modal profile and limits for the horizons and the various properties measured for each.
+%
+The delineations show an obvious pattern, which the survey has inferred from landscape analysis.
+%
+Fluvial systems, contrasting parent materials, and geologic structures are clearly visible.
+%
+Other boundaries are not obviously linked to the landscape, but may have been inferred from depositional history discovered in the field land use preferences.
+%
+In any case we would like the DSM to represent these units, perhaps with more precise boundary placement due to precisely georeferenced covariates, and perhaps with some boundaries as transition zones \citep{LagacherieFuzzinessuncertaintysoil1996}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{pq49b_map_3.jpg}  
+  \caption{A portion of typical semi-detailed soil class map. Source \citep{grenonEtudePedologiqueComte1999}}
+  \label{fig:pq49b3_part}
+\end{figure}
+
 \section{What is ``Reality''?}
 
 \par
@@ -145,11 +171,11 @@ The initial indivisible component of the soil mantle is the \emph{elementary soi
 At the finest scale these are:
 
 \begin{enumerate}
-\item[0] Homogeneous
-\item Sporadically spotted: ``minute'' areas of contrasting soils: e.g., from tree throw, termite mounds,  carbonate solution-driven  depth of pedogenesis
--- can be found by comprehensive geotechnical investigation or precision ag. technology; these DSM are not considered here
-\item Regular-cycling: e.g.,  gilgai,
-\item apparent diffusion
+\item[0.] Homogeneous;
+\item Sporadically spotted: ``minute'' areas of contrasting soils: e.g., from tree throw, termite mounds,  carbonate solution-driven  depth of pedogenesis;
+-- can be found by comprehensive geotechnical investigation or precision ag. technology; these DSM are not considered here;
+\item Regular-cycling: e.g.,  gilgai;
+\item apparent diffusion.
 \end{enumerate}
 
 The sporadically spotted scale can not be captured by any reasonable DSM scale.
