@@ -86,6 +86,31 @@ Except for precision agriculture, land is managed as units of more or less homog
 %
 Hydrologic models require connectivity between grid cells, as water flows over or through the landscape.
 
+\section{What is ``Reality''?}
+
+\par
+Point-wise reality is the actual vertical distribution of a set of soil properties at pedon scale.
+%
+These are levels \textit{i} (pedon) and \textit{i-1} (horizon) of \citet{Hoosbeekquantitativemodelingpedogenesis1992}'s organizational hierarchy.
+%
+Finer scales are not mapped.
+
+\subsection{Vertical reality}
+
+DSM predicts either pointwise at fixed depths, or as averages over a fixed depth slice.
+%
+This contrasts with the organization of natural soil bodies as pedogenetic horizons, which are the usual vertical resolution units in field descriptions and laboratory analyses.
+
+
+\subsection{Horizontal reality}
+%
+
+\par
+The reality over areas includes the relation between pedons, i.e., polypedons of similar and contrasting soils.
+%
+The DSM product should show these relations.
+%
+
 \par
 Soil class maps made by expert landscape analysis and field investigation show discrete map delineations with a minimum ground area corresponding to the design scale.
 %
@@ -111,31 +136,6 @@ In any case we would like the DSM to represent these units, perhaps with more pr
   \caption{A portion of typical semi-detailed soil class map. Source \citep{grenonEtudePedologiqueComte1999}}
   \label{fig:pq49b3}
 \end{figure}
-
-\section{What is ``Reality''?}
-
-\par
-Point-wise reality is the actual vertical distribution of a set of soil properties at pedon scale.
-%
-These are levels \textit{i} (pedon) and \textit{i-1} (horizon) of \citet{Hoosbeekquantitativemodelingpedogenesis1992}'s organizational hierarchy.
-%
-Finer scales are not mapped.
-
-\subsection{Vertical reality}
-
-DSM predicts either pointwise at fixed depths, or as averages over a fixed depth slice.
-%
-This contrasts with the organization of natural soil bodies as pedogenetic horizons, which are the usual vertical resolution units in field descriptions and laboratory analyses.
-
-
-\subsection{Horizontal reality}
-%
-
-\par
-The reality over areas includes the relation between pedons, i.e., polypedons of similar and contrasting soils.
-%
-The DSM product should show these relations.
-%
 
 \par
 DSM predicts over grid cells much larger than a pedon.
@@ -198,7 +198,6 @@ If these local patterns are at sufficiently coarse size to be represented at the
 \citet{holeSoilLandscapeAnalysis1985} relates the \emph{pedologic fabric} of the landscape in terms of the size, shape and arrangement of bodies of soil and associated not-soil.
 %
 These are all called \emph{associations}, depending on the size of mapping units on a polygon map of soil bodies.
-%
 
 \par
 \citet[Table 5]{holeApproachLandscapeAnalysis1978} first discusses sizes of map units.
@@ -208,10 +207,10 @@ The soil individuals of map units as they exist on the ground are of size $\appr
 These then can be grouped into polypedons:
 %
 \begin{enumerate}
-\item Micro: $<0.1 \mathrm{ha}$;
-\item Meso: $0.1 - 1.0 \mathrm{ha}$;
-\item Macro: $10 - 100 \mathrm{ha}$;
-\item Mega: $>100 \mathrm{ha}$;
+\item Micro: $<0.1 \; \mathrm{ha}$;
+\item Meso: $0.1 - 1.0 \;\mathrm{ha}$;
+\item Macro: $10 - 100 \; \mathrm{ha}$;
+\item Mega: $>100 \; \mathrm{ha}$;
 \end{enumerate}
 %
 The resolution of the DSM product dictates which of these can be identified on the DSM map.
@@ -219,13 +218,13 @@ The resolution of the DSM product dictates which of these can be identified on t
 \par
 Over larger extents, \citet[Table 5]{holeApproachLandscapeAnalysis1978} identifies:
 %
-``microassociation'' mapping units have size $<250 \mathrm{km}^2$;
+``microassociation'' mapping units have size $<250 \; \mathrm{km}^2$;
 %
-``mesoasociation'' mapping units $250-2~500 \mathrm{km}^2$; and
+``mesoasociation'' mapping units $250-2~500 \; \mathrm{km}^2$; and
 %
-``macroasociation'' mapping units  $2~500 - 250~000\mathrm{km}^2$.
+``macroasociation'' mapping units  $2~500 - 250~000 \;\mathrm{km}^2$.
 %
-``megaasociation'' mapping units  $> 250~000\mathrm{km}^2$.
+``megaasociation'' mapping units  $> 250~000 \; \mathrm{km}^2$.
 %
 These scales are not relevant to the current discussion.
 
@@ -240,16 +239,39 @@ These scales are not relevant to the current discussion.
 %
 These can be identified at any resolution, depending on the spatial arrangement of the soil-forming process.
 
+
 \section{Patterns represented by DSM}
 
 \par
-Different DSM methods can represent different patterns.
+Different DSM methods are capable of represent different patterns:
 
 \begin{itemize}
 \item Trend surfaces, including polynomial trends, thin-plate splines (TPS) and generalized additive models (GAM): These can represent smooth transitions over local to wide areas.  Splines and GAM show both in one model.
 \item Interpolation by pure geostatistics, e.g., Ordinary Kriging (OK): These show smooth local transitions in the neighbourhood of training points. Thus they are well-suited to ``spots'' or ``disks''.
 \item Tree-based or neural network-based machine learning: These predict separately at each grid cell, based on the trained model. There is no requirement for spatial continuity.  This allows finely-speckled patterns of contrasting soils -- whether these are realistic or not.
 \end{itemize}
+
+\section{What is predicted by DSM?}
+
+DSM predicts separately at each grid cell. The prediction can be of different supports:
+
+\begin{enumerate}
+\item at the centre point as a single predicted value, implicitly at the point-support size of the training data. This is typical of ML predictions.
+  %
+  The value is then supposed to be uniform within the grid cell, at any point support within it.
+%
+  The grid cell size is limited by finest-resolution covariate.
+  %
+  There is no information at finer resolution.
+  %
+  This accounts for possible imprecise georeferencing within the grid cell size.
+  %
+  The covariate values at this grid cell size may be integrations of all values. This is typical of remote sensing pixels with a defined field of view, and receiving energy from that entire field.
+  %
+  Other covariate values may be ``point'' predictions, also referenced to the grid cell centre. An example is an predicted climate surface interpolated from point observations.
+  %
+\item over the pixel as a mean value, also from point-support training data. This can be accomplished by block kriging.
+\end{enumerate}
 
 
 \section{Scale and resolution}
@@ -264,6 +286,33 @@ For ordinal categorical variables generalized from continuous variables it is th
 For nominal categorical variables based on classes, e.g., a soil classification system, it is the extent of properties of the class.
 %
 This latter is implicit in monothetic hierarchical soil classification systems, notably USDA Soil Taxonomy, but also the World Reference Base for Soil Classification and many national systems.
+
+\par
+Table 1 in \citep{mcbratneyDigitalSoilMapping2003} presents a link between soil survey orders, as defined by the USDA NRCS, scale, and resolution.
+%
+The equivalent map scale is determined by assuming a  $1 \times 1 \; \mathrm{mm}$ paper map area as the smallest discernible area, so that the scale is $1 \; \mathrm{m}/1000 s$, where $s$ is the side length of 1000 grid cells.
+%
+For example with 250~m horizontal resolution grid cells, this is $1:250~000$ (reconaissance or general soil survey, order 4/5); for 30~m  grid cells this is $1:30~000$ (semi-detailed soil survey, order 2/3).
+%
+These authors further argue that, because of the Nyquist frequency, in fact a $2 \times 2$ grid cell block must be considered the minimum unit in a DSM, so the effective resolution is twice the nominal resolution.
+%
+So in these two examples the effective equivalent map scale would be $1:500~000$ (order 5) and $1:60~000$ (order 3).
+%
+The minimum legible delineation (MLD) for a DSM product is thus four grid cells, and any variation within is by definition ``noise'' which can't be evaluated.
+
+\par
+Implicitly the DSM represents the class or value as uniform within the MLD.
+
+\par
+Figure \ref{fig:hole12} shows how soil bodies can be delineated at increasingly fine scale, depending on the categorical degree of contrast between them.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{10.1016.0016-7061(78)90002-2_Fig12.png}  
+  \caption{Orders of soil boundaries. Figure 12 from \citep{holeApproachLandscapeAnalysis1978}. Original from \citep{steingraeberSoilSurveyMilwaukee1971}.}
+  \label{fig:hole12}
+\end{figure}
+
 
 \section{Case Study 1 -- Kenya}
 
