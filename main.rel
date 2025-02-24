@@ -1,0 +1,50 @@
+;; RefTeX parse info file
+;; File: /Users/rossiter/GitHub/Digital-Soil-Maps-vs.-Reality-/main.tex
+;; User: rossiter (D G Rossiter)
+
+(set reftex-docstruct-symbol '(
+
+
+(xr nil "\\\\\\\\\\\\")
+
+(index-tags)
+
+(is-multi nil)
+
+(bibview-cache)
+
+(master-dir . "/Users/rossiter/GitHub/Digital-Soil-Maps-vs.-Reality-/")
+
+(label-numbers)
+
+(bof "/Users/rossiter/GitHub/Digital-Soil-Maps-vs.-Reality-/main.tex")
+
+("fig:pq49b3" "f" nil "/Users/rossiter/GitHub/Digital-Soil-Maps-vs.-Reality-/main.tex" nil "")
+
+(toc "toc" "    1 What is ``Reality''?" "/Users/rossiter/GitHub/Digital-Soil-Maps-vs.-Reality-/main.tex" nil 2 "1" "\\section{What is ``Reality''?}" 3206)
+
+(toc "toc" "      1.1 Vertical reality" "/Users/rossiter/GitHub/Digital-Soil-Maps-vs.-Reality-/main.tex" nil 3 "1.1" "\\subsection{Vertical reality}" 3523)
+
+(toc "toc" "      1.2 Horizontal reality" "/Users/rossiter/GitHub/Digital-Soil-Maps-vs.-Reality-/main.tex" nil 3 "1.2" "\\subsection{Horizontal reality}" 3824)
+
+(toc "toc" "    2 Concepts of spatial organization" "/Users/rossiter/GitHub/Digital-Soil-Maps-vs.-Reality-/main.tex" nil 2 "2" "\\section{Concepts of spatial organization}" 6335)
+
+(toc "toc" "      2.1 Fridland's concepts" "/Users/rossiter/GitHub/Digital-Soil-Maps-vs.-Reality-/main.tex" nil 3 "2.1" "\\subsection{Fridland's concepts}" 6695)
+
+(toc "toc" "      2.2 Hole's concepts" "/Users/rossiter/GitHub/Digital-Soil-Maps-vs.-Reality-/main.tex" nil 3 "2.2" "\\subsection{Hole's concepts}" 9087)
+
+(toc "toc" "    3 Patterns represented by DSM" "/Users/rossiter/GitHub/Digital-Soil-Maps-vs.-Reality-/main.tex" nil 2 "3" "\\section{Patterns represented by DSM}" 11324)
+
+(toc "toc" "    4 Scale and resolution" "/Users/rossiter/GitHub/Digital-Soil-Maps-vs.-Reality-/main.tex" nil 2 "4" "\\section{Scale and resolution}" 13287)
+
+(toc "toc" "    5 Case Study 1 -- Kenya" "/Users/rossiter/GitHub/Digital-Soil-Maps-vs.-Reality-/main.tex" nil 2 "5" "\\section{Case Study 1 -- Kenya}" 15368)
+
+(toc "toc" "    6 Case Study 2 -- European soil classes" "/Users/rossiter/GitHub/Digital-Soil-Maps-vs.-Reality-/main.tex" nil 2 "6" "\\section{Case Study 2 -- European soil classes}" 15637)
+
+("a1" "s" "%\\begin{algorithmic} %... %" "/Users/rossiter/GitHub/Digital-Soil-Maps-vs.-Reality-/main.tex" 17085)
+
+(bib "/Users/rossiter/GitHub/Digital-Soil-Maps-vs.-Reality-/reality.bib")
+
+(eof "/Users/rossiter/GitHub/Digital-Soil-Maps-vs.-Reality-/main.tex")
+))
+

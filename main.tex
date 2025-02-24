@@ -63,8 +63,13 @@
  %
 Any map should be a faithful representation of what it is designed to show, with some generalization appropriate to the map scale or grid cell resolution.
 %
-Soil maps should thus correspond to the actual soil properties or types \ldots
+Maps of soil properties should thus correspond to the actual vertical and horizontal distribution of soil properties on the ground.
 %
+Similarly, maps of soil types should correspond to the actual types, according to the central concept and property range of each type.
+%
+Digital soil maps (DSM) predict at grid cells either as point or block estimates, but the evaluation must be of the patterns over the mapped area, including spatial concepts such as connectivity, adjaceny, and form.
+%
+This is intrinsically connected with the concepts of map scale, grid cell resultion, categorical and cartographic detail.
 \end{abstract}
 
 \newpage
@@ -97,23 +102,65 @@ Finer scales are not mapped.
 
 \subsection{Vertical reality}
 
-DSM predicts either pointwise at fixed depths, or as averages over a fixed depth slice.
+DSM predicts soil properties either pointwise at fixed depths, or as averages over a fixed depth slice.
+%
+By far the most common set of depths are those specified by the GlobalSoilMap project \citep{ScienceCommittee2015a}: 0-5, 5-15, 15-30, 30-60, 60-100, 100-200~cm.
+%
+These were chosen to provide a reasonable resolution for land surface modelling.
 %
 This contrasts with the organization of natural soil bodies as pedogenetic horizons, which are the usual vertical resolution units in field descriptions and laboratory analyses.
+%
+The horizons are separated by boundaries that range from very sharp to diffuse, as recognized in field description manuals \citep{usdanaturalresourcesconservationservice.FieldBookDescribing2024, foodandagricultureorganizationoftheunitednationsGuidelinesSoilDescription2006}.
+%
+No DSM method to date recognizes different thickness of transition.
+%
+This could be partially offset by predicting at many thin depth slices, but this would require similarly fine-resolution training profile sampling, or else inferring transition horizons from the sampled genetic horizons and horizon boundary descriptions.
 
+\par
+So the correspondence with vertical ``reality'' is reduced to accuray of either the value at the depth slice centre, or its mean over the depth slice.
+%
+Whether this is sufficient for a given application can not be assessed.
 
 \subsection{Horizontal reality}
 %
 
 \par
-The reality over areas includes the relation between pedons, i.e., polypedons of similar and contrasting soils.
+The reality over areas includes the relation between pedons, i.e., polypedons of similar and contrasting soils \citep{johnsonPedonPolypedon1963}.
 %
 The DSM product should show these relations.
 %
 
-\par
-Soil class maps made by expert landscape analysis and field investigation show discrete map delineations with a minimum ground area corresponding to the design scale.
+\subsubsection{Soil property  maps}
+
+DSM typically predicts a  large number of soil properties (either primary or derived by pedotransfer functions) at a series of standardized depth slices.
 %
+Some properties have a clear landscape relation, whereas others are more related to internal organization of the soil body.
+%
+Examples of the first case are particle-size class in an alluvial landscape, or 
+
+\subsubsection{Soil class maps}
+
+\par
+DSM can also be used to predict soil classes at each grid cell, either at its centre or as the dominant class in a cell.
+%
+Most DSM methods can predict the probability of occurrence of one or more classes; an example is the probability forest implemented in the \texttt{ranger} R package \citep{Wright.Ziegler2017}.
+%
+Of course, in a closed classification system a pedon can only be assigned to one class, so that the most probable class is typically presented, along with its uncertainty evaluated by the Brier score, entropy, or a confusion index.
+%
+Pointwise or grid cell-wise  accuracy is evaluated with confusion matrix statistics \citep{CongaltonAssessingaccuracyremotely2009}.
+%
+However, this does not account for spatial patterns of soil classes.
+%
+The concept of the polypedon (contiguous group of pedons of the same class) show that the DSM-produced pattern must be evaluated again the actual pattern of polypedons.
+
+\par
+Although we never know the complete pattern, soil class maps made by expert landscape analysis and field investigation show discrete map delineations with a minimum ground area corresponding to the design scale.
+%
+These maps are made according to the soil survey landscape analysis paradigm \citep{hudsonSoilSurveyParadigmbased1992}, based primarily on objective information (landforms, land use) informing tacit knowledge and expert judgement.
+%
+So one test of DSM is how closely it matches traditional soil class maps, at the same categorical and cartographic detail.
+
+\par
 Each delineation is part of a map unit (also called a legend category), linked to a description of the range of soil classes, typical soil profiles, and associated laboratory analysis to be found within the map unit. The legend is either local names for a soil type or group of them, or a name within a soil classification system.
 %
 Figure \ref{fig:pq49b3} shows a typical example from Qu\'{e}bec \citep{grenonEtudePedologiqueComte1999}.
@@ -213,7 +260,19 @@ These then can be grouped into polypedons:
 \item Mega: $>100 \; \mathrm{ha}$;
 \end{enumerate}
 %
-The resolution of the DSM product dictates which of these can be identified on the DSM map.
+
+\par
+Figure \ref{fig:hole12} shows how soil bodies can be delineated at increasingly fine scale, depending on the categorical degree of contrast between them.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.45\textwidth]{10.1016.0016-7061(78)90002-2_Fig12.png}
+  \hfill
+  \includegraphics[width=0.45\textwidth]{10.1016.0016-7061(78)90002-2_Fig12_topo1901.png}
+  \caption{Orders of soil boundaries. Left: Figure 12 from \citep{holeApproachLandscapeAnalysis1978}; Right: topography of this area, USGS topographic map 1901.}
+  \label{fig:hole12}
+\end{figure}
+
 
 \par
 Over larger extents, \citet[Table 5]{holeApproachLandscapeAnalysis1978} identifies:
@@ -288,6 +347,8 @@ For nominal categorical variables based on classes, e.g., a soil classification 
 This latter is implicit in monothetic hierarchical soil classification systems, notably USDA Soil Taxonomy, but also the World Reference Base for Soil Classification and many national systems.
 
 \par
+The resolution of the DSM product dictates which of these can be identified on the DSM map.
+%
 Table 1 in \citep{mcbratneyDigitalSoilMapping2003} presents a link between soil survey orders, as defined by the USDA NRCS, scale, and resolution.
 %
 The equivalent map scale is determined by assuming a  $1 \times 1 \; \mathrm{mm}$ paper map area as the smallest discernible area, so that the scale is $1 \; \mathrm{m}/1000 s$, where $s$ is the side length of 1000 grid cells.
@@ -303,28 +364,57 @@ The minimum legible delineation (MLD) for a DSM product is thus four grid cells,
 \par
 Implicitly the DSM represents the class or value as uniform within the MLD.
 
-\par
-Figure \ref{fig:hole12} shows how soil bodies can be delineated at increasingly fine scale, depending on the categorical degree of contrast between them.
+\section{Case studies}
 
-\begin{figure}
-  \centering
-  \includegraphics[width=0.8\textwidth]{10.1016.0016-7061(78)90002-2_Fig12.png}  
-  \caption{Orders of soil boundaries. Figure 12 from \citep{holeApproachLandscapeAnalysis1978}. Original from \citep{steingraeberSoilSurveyMilwaukee1971}.}
-  \label{fig:hole12}
-\end{figure}
+In this section we examine some interesting soil patterns from different parts of the world, and see how DSM products reproduce these.
 
-
-\section{Case Study 1 -- Kenya}
+\subsection{Case Study -- Kenya}
 
 iSDA maps vs.\ colonial maps, see \emph{/Users/rossiter/Library/Mobile Documents/com~apple~CloudDocs/Documents/data/Journal/BookChapters/DSM2006/graph}. We should see the ironstone hills (coarse fragments), river valley (silt) etc.
 
-\section{Case Study 2 -- European soil classes}
+\subsection{Case Study -- European soil classes}
 
-Miniak predictived maps \url{https://zenodo.org/records/13838408}. Oversimplified NL.
+WRB Reference Soil Groups with one principal classifier were mapped over Europe by  Miniak\url{https://zenodo.org/records/13838408}.
 
+
+\subsection{Case Study -- Central New York (USA) drumlin field}
+
+\citep{naumanSoilLandscapesUnited2024}
+
+\subsection{Case Study -- Missippi Delta alluvial plain}
+
+\par
+The Missipppi River has created a wide plain of active and abandoned channels, backswamps, levees, and terraces.
+%
+In the State of Mississippi this is referred to as the ``Delta''.
+%
+This creates a clear pattern of particle-size classes.
+%
+Figure \ref{fig:stovall} shows a typical pattern.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=SoilWeb_StovallMS.png}
+ \caption{Soil series map, centred at Stovall (MS).}
+  \label{fig:stovall}
+\end{figure}
+
+
+
+\subsection{Case Study -- Driftless area of Wisconsin (USA)}
+
+Soil series of the Raffelson  area in the Driftless Area of Wisconsin has extensively mapped with the SolIM approach \citep{Zhu.etal2001,zhuPredictionSoilProperties2010}.
+%
+This area has a regular topography with typical landscape positions for each soil series.
+
+
+
+
+%%%%%%%%%%%
 \conclusions[Discussion]  %% \conclusions[modified heading if necessary]
 %
 Final discussion and recommendations for DSM assessment.
+
 
 
 %\codedataavailability{}
