@@ -40,6 +40,7 @@
 
 \correspondence{D G Rossiter (david.rossiter@isric.org)}
 
+\date{DRAFT \today}
 
 \runningtitle{DSM vs. ``reality''}
 
@@ -61,15 +62,15 @@
 \newpage
 \begin{abstract}
  %
-Any map should be a faithful representation of what it is designed to show, with some generalization appropriate to the map scale or grid cell resolution.
+Any map should be a faithful representation of what it is designed to show, with generalisation appropriate to the map scale or grid cell resolution.
 %
 Maps of soil properties should thus correspond to the actual vertical and horizontal distribution of soil properties on the ground.
 %
 Similarly, maps of soil types should correspond to the actual types, according to the central concept and property range of each type.
 %
-Digital soil maps (DSM) predict at grid cells either as point or block estimates, but the evaluation must be of the patterns over the mapped area, including spatial concepts such as connectivity, adjaceny, and form.
+Digital soil maps (DSM) predict at grid cells either as point or block estimates, but the evaluation must be of the patterns over the mapped area, including spatial concepts such as connectivity, adjacency, and form.
 %
-This is intrinsically connected with the concepts of map scale, grid cell resultion, categorical and cartographic detail.
+This is intrinsically connected with the concepts of map scale, grid cell result ion, categorical and cartographic detail.
 \end{abstract}
 
 \newpage
@@ -83,7 +84,7 @@ DSM consists of training a model (either geostatistical or machine learning) on 
 The model is then applied over an area to be mapped, either by interpolation, by application of the machine-learning model, or a combination, to make a predictive map with quantified uncertainty at each location, typically a grid at some horizontal resolution.
 
 \par
-How useful are these maps? One answer is the per-grid cell evaluation of uncertianty, compared to acceptance criteria for one or more uses.
+How useful are these maps? One answer is the per-grid cell evaluation of uncertainty, compared to acceptance criteria for one or more uses.
 %
 However, many uses require knowledge of the soil pattern, not just at individual points.
 %
@@ -96,7 +97,7 @@ Hydrologic models require connectivity between grid cells, as water flows over o
 \par
 Point-wise reality is the actual vertical distribution of a set of soil properties at pedon scale.
 %
-These are levels \textit{i} (pedon) and \textit{i-1} (horizon) of \citet{Hoosbeekquantitativemodelingpedogenesis1992}'s organizational hierarchy.
+These are levels \textit{i} (pedon) and \textit{i-1} (horizon) of \citet{Hoosbeekquantitativemodelingpedogenesis1992}'s organisational hierarchy.
 %
 Finer scales are not mapped.
 
@@ -112,12 +113,12 @@ This contrasts with the organization of natural soil bodies as pedogenetic horiz
 %
 The horizons are separated by boundaries that range from very sharp to diffuse, as recognized in field description manuals \citep{usdanaturalresourcesconservationservice.FieldBookDescribing2024, foodandagricultureorganizationoftheunitednationsGuidelinesSoilDescription2006}.
 %
-No DSM method to date recognizes different thickness of transition.
+No DSM method to date recognises different thickness of transition.
 %
 This could be partially offset by predicting at many thin depth slices, but this would require similarly fine-resolution training profile sampling, or else inferring transition horizons from the sampled genetic horizons and horizon boundary descriptions.
 
 \par
-So the correspondence with vertical ``reality'' is reduced to accuray of either the value at the depth slice centre, or its mean over the depth slice.
+So the correspondence with vertical ``reality'' is reduced to accuracy of either the value at the depth slice centre, or its mean over the depth slice.
 %
 Whether this is sufficient for a given application can not be assessed.
 
@@ -189,14 +190,14 @@ DSM predicts over grid cells much larger than a pedon.
 %
 Geostatistical methods can predict averages their uncertainties over a block the size of the grid cell, but the average is not observed in the field (unless the entire grid cell would be dug up for examination!).
 %
-Machine-learning methods predict at the same support as the training observations, i.e., ``point'' (pedon) support, and the predicted values and their uncertainties are implicity extended to the whole grid cell.
+Machine-learning methods predict at the same support as the training observations, i.e., ``point'' (pedon) support, and the predicted values and their uncertainties are implicitly extended to the whole grid cell.
 %
 So here the reality is the average -- any finer-scale detail of reality is by definition not representable by this DSM.
 
 \section{Concepts of spatial organization}
 
 \par
-The categorization spatial pattern of soil bodies was extensively studied over 50 years ago, notably by \citet{Fridland1972,Fridland1974} and \citet{holeApproachLandscapeAnalysis1978, holeSoilLandscapeAnalysis1985}.
+The categorisation spatial pattern of soil bodies was extensively studied over 50 years ago, notably by \citet{Fridland1972,Fridland1974} and \citet{holeApproachLandscapeAnalysis1978, holeSoilLandscapeAnalysis1985}.
 %
 Fridland defined ``soil combinations'', whereas Hole used the term ``soilscape fabrics''.
 %
@@ -293,7 +294,7 @@ These scales are not relevant to the current discussion.
 \item disks
 \item spots
 \item stripes (simple or branched)
-\item categorized by shape index (boundary length divided by periphery of a circle of the same area) as simple to rounded, and complex to angular.
+\item categorised by shape index (boundary length divided by periphery of a circle of the same area) as simple to rounded, and complex to angular.
 \end{enumerate}
 %
 These can be identified at any resolution, depending on the spatial arrangement of the soil-forming process.
@@ -353,7 +354,7 @@ Table 1 in \citep{mcbratneyDigitalSoilMapping2003} presents a link between soil 
 %
 The equivalent map scale is determined by assuming a  $1 \times 1 \; \mathrm{mm}$ paper map area as the smallest discernible area, so that the scale is $1 \; \mathrm{m}/1000 s$, where $s$ is the side length of 1000 grid cells.
 %
-For example with 250~m horizontal resolution grid cells, this is $1:250~000$ (reconaissance or general soil survey, order 4/5); for 30~m  grid cells this is $1:30~000$ (semi-detailed soil survey, order 2/3).
+For example with 250~m horizontal resolution grid cells, this is $1:250~000$ (reconnaissance or general soil survey, order 4/5); for 30~m  grid cells this is $1:30~000$ (semi-detailed soil survey, order 2/3).
 %
 These authors further argue that, because of the Nyquist frequency, in fact a $2 \times 2$ grid cell block must be considered the minimum unit in a DSM, so the effective resolution is twice the nominal resolution.
 %
@@ -367,6 +368,8 @@ Implicitly the DSM represents the class or value as uniform within the MLD.
 \section{Case studies}
 
 In this section we examine some interesting soil patterns from different parts of the world, and see how DSM products reproduce these.
+%
+In some cases the patterns have a presumed close relation with one or more predictors (covariates), in otherw DSM relies on the interaction between many predictors.
 
 \subsection{Case Study -- Kenya}
 
@@ -374,36 +377,65 @@ iSDA maps vs.\ colonial maps, see \emph{/Users/rossiter/Library/Mobile Documents
 
 \subsection{Case Study -- European soil classes}
 
-WRB Reference Soil Groups with one principal classifier were mapped over Europe by  Miniak\url{https://zenodo.org/records/13838408}.
+WRB Reference Soil Groups with one principal classifier, along with the relative entropy of classification as a measure of uncertainty, were mapped over Europe at 30~m horizontal resolution by  Miniak \emph{et al.}\footnote{\url{https://zenodo.org/records/13838408}}.
 
 
 \subsection{Case Study -- Central New York (USA) drumlin field}
 
 \citep{naumanSoilLandscapesUnited2024}
 
-\subsection{Case Study -- Missippi Delta alluvial plain}
+\subsection{Case Study -- Mississippi Delta alluvial plain}
 
 \par
-The Missipppi River has created a wide plain of active and abandoned channels, backswamps, levees, and terraces.
+The Mississippi River has created a wide plain of active and abandoned channels, backswamps, levees, and terraces.
 %
 In the State of Mississippi this is referred to as the ``Delta''.
 %
-This creates a clear pattern of particle-size classes.
+This creates a clear fine-grained pattern of particle-size classes.
 %
-Figure \ref{fig:stovall} shows a typical pattern.
+We selected a typical area in Coahoma County (MS), near the county town Clarksdale.
+%
+As with all the intensively-used areas of the USA, this country has been surveyed by expert surveyors and correlators  \citep{unitedstates.naturalresourcesconservationserviceSoilSurveyCoahoma1959} at a design scale of 1:20~000 (Minimum Legible Area 1.6~ha) and the resulting polygon map later digitized and made avalable in the gSSSURGO product \citep{nrcssoilsDescriptionGriddedSoil2022}.
+%
+Figure \ref{fig:coahoma} shows a typical pattern of map delineations from the original survey and its gSSURGO digital product made available as part of the SoilWeb application \citep{californiasoilresourcelabSoilWebApps, OGeenSoilWebMultifacetedInterface2017}.
 
 \begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{SoilWeb_StovallMS.png}
- \caption{Soil series map, centred at Stovall (MS).}
-  \label{fig:stovall}
+  \includegraphics[width=0.45\textwidth]{usda-general-soil-map-of-coahoma-county-mississippi_Plate32.jpg}
+  \hfill
+  \includegraphics[width=0.45\textwidth]{SoilWeb_coahoma-county-mississipp_Plate32.png} 
+ \caption{Detailed soil map (part), Coahoma County (MS). Left: original report, Right: digitzed as gSSURGO and served by SoilWeb}
+  \label{fig:coahoma}
 \end{figure}
+
+%
+\par
+Each map unit is made up from many delineations. The map unit has an associated attribute database for the unit itself and a representative pedon of the dominant component.
+%
+Here we examine the clay concentration of the first layer.
+%
+Figure \ref{fig:coahoma_clay} shows this for the original gSSURGO polygons and for four resolutions rasterized from this by the \texttt{terra::rasterize} R function, computed as the area-weighted mean of the vector map under the pixel.
+
+\begin{figure}
+  \includegraphics[width=0.33\textwidth]{gssurgo-vectors.png}
+  \hfill
+  \includegraphics[width=0.33\textwidth]{ggsurgo-to-raster-10m.png}
+  \\
+  \includegraphics[width=0.45\textwidth]{ggsurgo-to-raster-30m.png}
+  \hfill
+  \includegraphics[width=0.45\textwidth]{ggsurgo-to-raster-250m.png}
+  \hfill
+  \includegraphics[width=0.45\textwidth]{ggsurgo-to-raster-1km.png}
+ \caption{Clay concentration \%, Coahoma County (MS). Top: gSSURGO vectors (left); 10~m rasterization (right); Bottom: Left to right: rasterizations at 30~m, 100~m, 1~km}
+  \label{fig:coahoma_clay}
+\end{figure}
+
+
 
 
 
 \subsection{Case Study -- Driftless area of Wisconsin (USA)}
 
-Soil series of the Raffelson  area in the Driftless Area of Wisconsin has extensively mapped with the SolIM approach \citep{Zhu.etal2001,zhuPredictionSoilProperties2010}.
+Soil series of the Raffelson  area in the Driftless Area of Wisconsin has extensively mapped with the ``soil land inference model'' (SoLIM) approach \citep{Zhu.etal2001,zhuPredictionSoilProperties2010}.
 %
 This area has a regular topography with typical landscape positions for each soil series.
 
@@ -441,7 +473,7 @@ Final discussion and recommendations for DSM assessment.
 
 %% Please add \clearpage between each table and/or figure. Further guidelines on figures and tables can be found below.
 
-\authorcontribution{DGR conceived of the ideaand wrote the initial draft. LP contributed advice at every step, especially the concepts and interpretations.} %% this section is mandatory
+\authorcontribution{DGR conceived of the idea and wrote the initial draft. LP contributed advice at every step, especially the concepts and interpretations.} %% this section is mandatory
 
 \competinginterests{The authors have no competing interests} %% this section is mandatory even if you declare that no competing interests are present
 
@@ -452,21 +484,11 @@ Final discussion and recommendations for DSM assessment.
 %\end{acknowledgements}
 
 
-%% REFERENCES
-
-%% The reference list is compiled as follows:
-
-%% Since the Copernicus LaTeX package includes the BibTeX style file copernicus.bst,
-%% authors experienced with BibTeX only have to include the following two lines:
+%% the Copernicus LaTeX package includes the BibTeX style file copernicus.bst,
 %%
 \addcontentsline{toc}{section}{References}
 \bibliographystyle{copernicus}
 \bibliography{reality.bib}
-
-%% URLs and DOIs can be entered in your BibTeX file as:
-%%
-%% URL = {http://www.xyz.org/~jones/idx_g.htm}
-%% DOI = {10.5194/xyz}
 
 
 %% LITERATURE CITATIONS
@@ -575,55 +597,6 @@ Final discussion and recommendations for DSM assessment.
 %%% Multiplication signs are typeset using the LaTeX commands \times (for vector products, grids, and exponential notations) or \cdot
 %%% The character * should not be applied as mutliplication sign
 %
-%
-%%% EQUATIONS
-%
-%%% Single-row equation
-%
-%\begin{equation}
-%
-%\end{equation}
-%
-%%% Multiline equation
-%
-%\begin{align}
-%& 3 + 5 = 8\\
-%& 3 + 5 = 8\\
-%& 3 + 5 = 8
-%\end{align}
-%
-%
-%%% MATRICES
-%
-%\begin{matrix}
-%x & y & z\\
-%x & y & z\\
-%x & y & z\\
-%\end{matrix}
-%
-%
-%%% ALGORITHM
-%
-%\begin{algorithm}
-%\caption{...}
-%\label{a1}
-%\begin{algorithmic}
-%...
-%\end{algorithmic}
-%\end{algorithm}
-%
-%
-%%% CHEMICAL FORMULAS AND REACTIONS
-%
-%%% For formulas embedded in the text, please use \chem{}
-%
-%%% The reaction environment creates labels including the letter R, i.e. (R1), (R2), etc.
-%
-%\begin{reaction}
-%%% \rightarrow should be used for normal (one-way) chemical reactions
-%%% \rightleftharpoons should be used for equilibria
-%%% \leftrightarrow should be used for resonance structures
-%\end{reaction}
 %
 %
 %%% PHYSICAL UNITS
