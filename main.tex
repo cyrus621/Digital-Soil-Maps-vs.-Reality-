@@ -387,6 +387,8 @@ WRB Reference Soil Groups with one principal classifier, along with the relative
 \subsection{Case Study -- Mississippi Delta alluvial plain}
 
 \par
+Here we examine a particularly striking soil pattern.
+%
 The Mississippi River has created a wide plain of active and abandoned channels, backswamps, levees, and terraces.
 %
 In the State of Mississippi this is referred to as the ``Delta''.
@@ -413,10 +415,12 @@ Each map unit is made up from many delineations. The map unit has an associated 
 %
 Here we examine the clay concentration of the first layer.
 %
-Figure \ref{fig:coahoma_clay} shows this for the original gSSURGO polygons and for four resolutions rasterized from this by the \texttt{terra::rasterize} R function, computed as the area-weighted mean of the vector map under the pixel.
+Figure \ref{fig:coahoma_clay} shows this for the original gSSURGO polygons and for four resolutions rasterized from this by the \texttt{terra::rasterize} R function, computed as values of the vector map under the centre point of the  pixel.
+%
+This approximates the usual DSM procedure of predicting a pixel by its centre point.
 
 \begin{figure}
-  \includegraphics[width=0.32\textwidth]{gssurgo-vectors.png}
+  \includegraphics[width=0.32\textwidth]{gssurgo-vectors.pdf}
   \hfill
   \includegraphics[width=0.32\textwidth]{ggsurgo-to-raster-10m.png}
   \hfill
@@ -431,8 +435,20 @@ Figure \ref{fig:coahoma_clay} shows this for the original gSSURGO polygons and f
   \label{fig:coahoma_clay}
 \end{figure}
 
+This area has been mapped by the global SoilGrids250 and also by SOLUS, an NRCS 100~m DSM project \citet{naumanSoilLandscapesUnited2024,naumanDataSoilLandscapes2024}.
+%
+Figure \ref{fig:coahoma_dsm} shows these. The colour ramps are distinct to emphasize the difference in range.
 
+\begin{figure}
+  \includegraphics[width=0.45\textwidth]{sg250_clay_05.png}
+  \hfill
+  \includegraphics[width=0.45\textwidth]{solus_clay_05.png} 
+ \caption{DSM products, Coahoma County (MS). Clay 0-5 cm. Left: SoilGrids250, Right: SOLUS. Note different colour ramps for different ranges}
+  \label{fig:coahoma}
+\end{figure}
 
+\par
+Clearly, SoilGrids completely fails to find the landscape pattern, even when compared to the 250~m rasterization of gSSURGO.
 
 
 \subsection{Case Study -- Driftless area of Wisconsin (USA)}
@@ -489,6 +505,7 @@ Final discussion and recommendations for DSM assessment.
 %% the Copernicus LaTeX package includes the BibTeX style file copernicus.bst,
 %%
 \addcontentsline{toc}{section}{References}
+\flushleft
 \bibliographystyle{copernicus}
 \bibliography{reality.bib}
 
