@@ -391,11 +391,11 @@ Here we examine a particularly striking soil pattern.
 %
 The Mississippi River has created a wide plain of active and abandoned channels, backswamps, levees, and terraces.
 %
-In the State of Mississippi this is referred to as the ``Delta''.
-%
 This creates a clear fine-grained pattern of particle-size classes.
 %
-We selected a typical area in Coahoma County (MS), near the county town Clarksdale.
+In the State of Mississippi this is referred to as the ``Delta''.
+%
+A typical area is in Coahoma County (MS), near the county town Clarksdale.
 %
 As with all the intensively-used areas of the USA, this country has been surveyed by expert surveyors and correlators  \citep{unitedstates.naturalresourcesconservationserviceSoilSurveyCoahoma1959} at a design scale of 1:20~000 (Minimum Legible Area 1.6~ha) and the resulting polygon map later digitized and made avalable in the gSSSURGO product \citep{nrcssoilsDescriptionGriddedSoil2022}.
 %
@@ -411,11 +411,16 @@ Figure \ref{fig:coahoma} shows a typical pattern of map delineations from the or
 
 %
 \par
-Each map unit is made up from many delineations. The map unit has an associated attribute database for the unit itself and a representative pedon of the dominant component.
+Each map unit is made up from many delineations. The map unit has an associated attribute database for the unit itself, which lists the soil series and their estimated proportions. At this design scale map units are consociations with one dominant component. The component database contains  a representative pedon (horizons, their description and associated laboratory data) of each  component.
 %
+From these linked tables a value for many soil properties can be extracted and mapped. 
+%
+The representative value is shown for the entire delineation; there is no finer resolution in this product, although there are disaggregation methods which attempt to produce finer-resolution products.
+
+\par
 Here we examine the clay concentration of the first layer.
 %
-Figure \ref{fig:coahoma_clay} shows this the original gSSURGO polygons at six resolutions rasterized from this by the \texttt{terra::rasterize} R function, computed as values of the vector map under the centre point of the  pixel.
+Figure \ref{fig:coahoma_clay} shows the gSSURGO polygons at six resolutions rasterized from this by the \texttt{terra::rasterize} R function, computed as values of the vector map under the centre point of the  pixel.
 %
 This approximates the usual DSM procedure of predicting a pixel by its centre point.
 
@@ -431,18 +436,19 @@ This approximates the usual DSM procedure of predicting a pixel by its centre po
   \includegraphics[width=0.32\textwidth]{ggsurgo-to-raster-1km.png}
   \hfill
   \includegraphics[width=0.32\textwidth]{ggsurgo-to-raster-5km.png}
- \caption{Clay concentration \%, Coahoma County (MS). Rasterizations from gSSURGO vectors. Top (left to right); 10~m, 30~m, 100~m; Bottom: (left to right): 250~m, 1~km, 5~km}
+ \caption{Mapped clay concentration \%, Coahoma County (MS). Rasterizations from gSSURGO vectors. Top (left to right); 10~m, 30~m, 100~m; Bottom: (left to right): 250~m, 1~km, 5~km}
   \label{fig:coahoma_clay}
 \end{figure}
 
+\par
 This area has been mapped by the global SoilGrids250 and also by SOLUS, an NRCS 100~m DSM project \citet{naumanSoilLandscapesUnited2024,naumanDataSoilLandscapes2024}.
 %
 Figure \ref{fig:coahoma_dsm} shows these. The colour ramps are distinct to emphasize the difference in range.
 
 \begin{figure}
-  \includegraphics[width=0.45\textwidth]{sg250_clay_05.png}
+  \resizebox{5cm}{3cm}\includegraphics[width=0.45\textwidth]{sg250_clay_05.png}
   \hfill
-  \includegraphics[width=0.45\textwidth]{solus_clay_05.png} 
+  \resizebox{5cm}{3cm}\includegraphics[width=0.45\textwidth]{solus_clay_05.png} 
  \caption{DSM products, Coahoma County (MS). Clay 0-5 cm. Left: SoilGrids250, Right: SOLUS. Note different colour ramps for different ranges}
   \label{fig:coahoma}
 \end{figure}
