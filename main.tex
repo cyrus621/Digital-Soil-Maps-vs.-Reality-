@@ -116,9 +116,12 @@ The horizons are separated by boundaries that range from very sharp to diffuse, 
 No DSM method to date recognises different thickness of transition.
 %
 This could be partially offset by predicting at many thin depth slices, but this would require similarly fine-resolution training profile sampling, or else inferring transition horizons from the sampled genetic horizons and horizon boundary descriptions.
+%
+In practice, DSM typically predicts at either the top or centre of the specified depth slices, as a pointwise prediction. This can be based on the property in the training data at that point location or integrated over the depth slice, typically by smoothing splines over the properties measured from bulk samples of genetic horizons, which do not correspond to the fixed depth slices.
+
 
 \par
-So the correspondence with vertical ``reality'' is reduced to accuracy of either the value at the depth slice centre, or its mean over the depth slice.
+So the correspondence with vertical ``reality'' is reduced to accuracy of either the value at the depth slice top or centre point, or its mean over the depth slice.
 %
 Whether this is sufficient for a given application can not be assessed.
 
@@ -137,7 +140,7 @@ DSM typically predicts a  large number of soil properties (either primary or der
 %
 Some properties have a clear landscape relation, whereas others are more related to internal organization of the soil body.
 %
-Examples of the first case are particle-size class in an alluvial landscape, or 
+An example of the first case is particle-size class in an alluvial landscape, of the second case the organic matter profile in Podzols. 
 
 \subsubsection{Soil class maps}
 
@@ -174,7 +177,7 @@ The delineations show an obvious pattern, which the survey has inferred from lan
 %
 Fluvial systems, contrasting parent materials, and geologic structures are clearly visible.
 %
-Other boundaries are not obviously linked to the landscape, but may have been inferred from depositional history discovered in the field land use preferences.
+Other boundaries are not obviously linked to the landscape, but may have been inferred from depositional history discovered in the land user's preferences for fields. 
 %
 In any case we would like the DSM to represent these units, perhaps with more precise boundary placement due to precisely georeferenced covariates, and perhaps with some boundaries as transition zones \citep{LagacherieFuzzinessuncertaintysoil1996}.
 
@@ -186,7 +189,7 @@ In any case we would like the DSM to represent these units, perhaps with more pr
 \end{figure}
 
 \par
-DSM predicts over grid cells much larger than a pedon.
+DSM predicts over grid cells much larger than a pedon, at finest $10 \ctimes 10 \; \mathrm{m}$.
 %
 Geostatistical methods can predict averages their uncertainties over a block the size of the grid cell, but the average is not observed in the field (unless the entire grid cell would be dug up for examination!).
 %
@@ -250,7 +253,7 @@ These are all called \emph{associations}, depending on the size of mapping units
 \par
 \citet[Table 5]{holeApproachLandscapeAnalysis1978} first discusses sizes of map units.
 %
-The soil individuals of map units as they exist on the ground are of size $\approx 1 \mathrm{m}^2$; this is the pedon.
+The soil individuals of map units as they exist on the ground are of size $\approx 1 \; \mathrm{m}^2$; this is the pedon.
 %
 These then can be grouped into polypedons:
 %
@@ -337,8 +340,13 @@ DSM predicts separately at each grid cell. The prediction can be of different su
 \section{Scale and resolution}
 
 \par
+These issues are discussed in detail by \citet{maloneSpatialScalingDigital2013}.
+
+\par
 The level of detail on a map has two components: categorical and cartographic.
 %
+
+\par
 Categorical detail is the precision of information. For a continuous variable it is the measurement precision.
 %
 For ordinal categorical variables generalized from continuous variables it is the class width.
@@ -346,9 +354,12 @@ For ordinal categorical variables generalized from continuous variables it is th
 For nominal categorical variables based on classes, e.g., a soil classification system, it is the extent of properties of the class.
 %
 This latter is implicit in monothetic hierarchical soil classification systems, notably USDA Soil Taxonomy, but also the World Reference Base for Soil Classification and many national systems.
-
-\par
+%
 The resolution of the DSM product dictates which of these can be identified on the DSM map.
+
+%
+\par
+Cartographic resolution in DSM is expressed as the grid cell size.
 %
 Table 1 in \citep{mcbratneyDigitalSoilMapping2003} presents a link between soil survey orders, as defined by the USDA NRCS, scale, and resolution.
 %
@@ -363,7 +374,12 @@ So in these two examples the effective equivalent map scale would be $1:500~000$
 The minimum legible delineation (MLD) for a DSM product is thus four grid cells, and any variation within is by definition ``noise'' which can't be evaluated.
 
 \par
-Implicitly the DSM represents the class or value as uniform within the MLD.
+The link between the two concepts of resolution is that the more general the cartography, the more general the category. USDA Soil Taxonomy was explicitly designed from the bottom up to group soil series in increasingly-general classes, about which increasingly-general statements can be made, and which it was expected that increasingly small-scale maps would be needed through the progression.
+%
+This latter was not realistic in some landscapes \citep{EdmondsStatisticalevaluationtaxonomic1986} but if only dominant classes are considered, over much of the soilscape this relation holds.
+%
+
+\par
 
 \section{Case studies}
 
@@ -373,7 +389,14 @@ In some cases the patterns have a presumed close relation with one or more predi
 
 \subsection{Case Study -- Kenya}
 
-iSDA maps vs.\ colonial maps, see \emph{/Users/rossiter/Library/Mobile Documents/com~apple~CloudDocs/Documents/data/Journal/BookChapters/DSM2006/graph}. We should see the ironstone hills (coarse fragments), river valley (silt) etc.
+iSDA maps vs.\ colonial maps.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\textwidth]{./EKonyangoPart1.jpg}
+  \caption{Soil class map, East Konyango district, Kenya. Source: \citep{KenyaDepartmentofAgricultureSoilsurveyEast1961}}
+  \label{ekonya1}
+\end{figure}
 
 \subsection{Case Study -- European soil classes}
 
